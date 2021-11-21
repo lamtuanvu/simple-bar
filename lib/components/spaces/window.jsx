@@ -9,7 +9,8 @@ const settings = Settings.get()
 const Window = ({ window }) => {
   const ref = Uebersicht.React.useRef()
   const { displayOnlyCurrent } = settings.process
-  const { minimized, focused, app, title, id } = window
+  const { minimized, 'has-focus': hasForcus, app, title, id } = window
+  const focused = hasForcus ? 1 : 0
   if (minimized === 1 || (displayOnlyCurrent && focused !== 1)) return null
   const isFocused = focused === 1
   const Icon = AppIcons.apps[app] || AppIcons.apps.Default

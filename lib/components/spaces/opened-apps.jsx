@@ -4,7 +4,14 @@ import * as Utils from '../../utils'
 const OpenedApps = ({ apps }) => {
   if (apps.length === 0) return null
   return Utils.sortWindows(apps).map((app, i) => {
-    const { minimized, focused, app: name, 'zoom-parent': zoomParent, 'zoom-fullscreen': zoomFullscreen } = app
+    const {
+      minimized,
+      'has-focus': hasFocus,
+      app: name,
+      'zoom-parent': zoomParent,
+      'zoom-fullscreen': zoomFullscreen
+    } = app
+    const focused = hasFocus ? 1 : 0
     if (minimized === 1) return null
 
     const Icon = AppIcons.apps[name] || AppIcons.apps.Default

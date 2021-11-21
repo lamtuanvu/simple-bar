@@ -12,8 +12,11 @@ const Space = ({ space, display, windows, displayIndex, currentSpaceIndex, SIPDi
   const [hovered, setHovered] = Uebersicht.React.useState(false)
   const [noDelay, setNoDelay] = Uebersicht.React.useState(false)
   const [editable, setEditable] = Uebersicht.React.useState(false)
-  const { index, label, focused, visible, 'native-fullscreen': fullscreen, type } = space
+  const { index, label, 'has-focus': hasFocus, visible, 'is-native-fullscreen': isNativeFullscreen, type } = space
   const [spaceLabel, setSpaceLabel] = Uebersicht.React.useState(label?.length ? label : index)
+  const fullscreen = isNativeFullscreen ? 1 : 0
+  // Keep the same logic of focusion as previous version
+  const focused = hasFocus ? 1 : 0
 
   const { spacesDisplay } = settings
   const {
